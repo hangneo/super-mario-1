@@ -5360,11 +5360,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 616575001714681901, guid: 92d07d1ec9346d2439e20cfc9b0a02f8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.422274
+      value: 28.48
       objectReference: {fileID: 0}
     - target: {fileID: 616575001714681901, guid: 92d07d1ec9346d2439e20cfc9b0a02f8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.162785
+      value: 2.36
       objectReference: {fileID: 0}
     - target: {fileID: 616575001714681901, guid: 92d07d1ec9346d2439e20cfc9b0a02f8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10254,9 +10254,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701d8e5e8b6149247b88859eec5ea336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToShow: {fileID: 1875061147}
-  hideDelay: 5
-  showDelay: 3
+  thoiGianNgoiLen: 1
+  thoiGianOTrong: 3
+  thoiGianChuiXuong: 2
+  chieuCaoToiDa: 4
+  chieuCaoToiThieu: 2.28
 --- !u!1001 &1882112981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11985,11 +11987,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 481021467160599389, guid: d83a5e7863a8afc4faee91819fff1fa7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 481021467160599389, guid: d83a5e7863a8afc4faee91819fff1fa7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 2.81
       objectReference: {fileID: 0}
     - target: {fileID: 481021467160599389, guid: d83a5e7863a8afc4faee91819fff1fa7, type: 3}
       propertyPath: m_LocalPosition.z
