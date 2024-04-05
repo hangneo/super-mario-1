@@ -8,8 +8,9 @@ public class HoaAnThit : MonoBehaviour
     public float thoiGianChuiXuong = 5f;
     public float chieuCaoToiDa = 10f;
     public float chieuCaoToiThieu = 0f;
-    
-    
+    public GameObject hoachetPrefabs;
+
+
     private IEnumerator Start()
     {
         while (true)
@@ -37,15 +38,41 @@ public class HoaAnThit : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Dan"))
         {
             other.gameObject.SetActive(false);
             GameManager.Instance.ResetLevel(3f);
+        }
+        else if (other.CompareTag("Player"))
+        {
+            // StartCoroutine(DestroyWithDelay(gameObject, 2f));
+            // Destroy(other.gameObject);
+            Destroy(gameObject);
+            StartCoroutine(HoaChetRoutine());
         }
         else
         {
             Destroy(other.gameObject);
         }
     }
-    
+    // private IEnumerator DestroyWithDelay(GameObject obj, float delay)
+    // {
+    //     SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
+    //     Color originalColor = renderer.color;
+    //     renderer.color = Color.gray;
+    //     obj.transform.Rotate(new Vector3(0f, 0f, 180f));
+
+    //     yield return new WaitForSeconds(delay);
+
+    //     yield return LerpPosition(new Vector3(obj.transform.position.x, chieuCaoToiThieu, obj.transform.position.z), thoiGianChuiXuong);
+    //     Destroy(obj);
+
+    //     renderer.color = originalColor;
+    // }
+    private IEnumerator HoaChetRoutine()
+    {
+        GameObject hoachet = Instantiate(hoachetPrefabs, transform.position, Quaternion.identity);
+        yield return StartCoroutine(LerpPosition(new Vector3(transform.position.x, chieuCaoToiThieu, transform.position.z), thoiGianChuiXuong));
+        Destroy(hoachet);
+    }
 }
