@@ -1,19 +1,25 @@
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class EntityMovement : MonoBehaviour
+public class ruaGai : MonoBehaviour
 {
     public float speed = 1f;
     public Vector2 direction = Vector2.left;
 
     private new Rigidbody2D rigidbody;
     private Vector2 velocity;
+    public Animator amt;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         enabled = false;
+    }
+
+    private void Start()
+    {
+        amt = GetComponent<Animator>();
+        amt.SetBool("isRunning", false);
     }
 
     private void OnBecameVisible()
@@ -57,9 +63,40 @@ public class EntityMovement : MonoBehaviour
         }
 
         if (direction.x > 0f) {
-            transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         } else if (direction.x < 0f) {
-            transform.localEulerAngles = Vector3.zero;
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+
+            if (player.starpower)
+            {
+                Hit();
+            }
+            else
+            {
+                player.Hit_();
+            }
+        }
+        if (!collision.gameObject.CompareTag("may"))
+        {
+            amt.SetBool("isRunning", true);
+        }
+        if (collision.gameObject.CompareTag("test"))
+        {
+        }
+    }
+
+    private void Hit()
+    {
+        amt.SetBool("death", true);
+        GetComponent<DeathAnimation>().enabled = true;
+        Destroy(gameObject, 1f);
     }
 }
