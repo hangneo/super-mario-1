@@ -32,6 +32,13 @@ public class Player : MonoBehaviour
             }
         }
     }
+    public void Hit_()
+    {
+        if (!dead && !starpower)
+        {
+            Death();
+        }
+    }
 
     public void Death()
     {
