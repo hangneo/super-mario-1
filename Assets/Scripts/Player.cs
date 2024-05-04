@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
     public PlayerSpriteRenderer smallRenderer;
     public PlayerSpriteRenderer bigRenderer;
     private PlayerSpriteRenderer activeRenderer;
-
     public CapsuleCollider2D capsuleCollider { get; private set; }
     public DeathAnimation deathAnimation { get; private set; }
 
@@ -25,9 +24,12 @@ public class Player : MonoBehaviour
     {
         if (!dead && !starpower)
         {
-            if (big) {
+            if (big)
+            {
                 Shrink();
-            } else {
+            }
+            else
+            {
                 Death();
             }
         }
@@ -105,7 +107,8 @@ public class Player : MonoBehaviour
         {
             elapsed += Time.deltaTime;
 
-            if (Time.frameCount % 4 == 0) {
+            if (Time.frameCount % 4 == 0)
+            {
                 activeRenderer.spriteRenderer.color = Random.ColorHSV(0f, 1f, 1f, 1f, 1f, 1f);
             }
 
@@ -115,5 +118,25 @@ public class Player : MonoBehaviour
         activeRenderer.spriteRenderer.color = Color.white;
         starpower = false;
     }
+    private void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        if (collider2D.CompareTag("Axe"))
+        {        
+                Death();            
+        }
+        else if (collider2D.CompareTag("Trap"))
+        {       
+                Death();
+            
+        }
+        
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("May"))
+        {
+            Death();
 
+        }
+    }
 }
